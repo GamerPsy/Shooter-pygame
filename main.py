@@ -24,6 +24,13 @@ while running:
     #appliquer image du joueur
     screen.blit(game.player.image, game.player.rect)
 
+    #gestion mouvement joueur
+    if game.pressed.get(pygame.K_RIGHT) and game.player.rect.x  + game.player.rect.width < screen.get_width():
+        game.player.move_right()
+    elif game.pressed.get(pygame.K_LEFT) and game.player.rect.x > 0:
+        game.player.move_left()
+
+
     #mise à jour de l'écran
     pygame.display.flip()
 
@@ -35,3 +42,9 @@ while running:
             running = False
             pygame.quit()
             print("Fermeture du jeu")
+        elif event.type == pygame.KEYDOWN:
+            game.pressed[event.key] = True
+        elif event.type == pygame.KEYUP:
+            game.pressed[event.key] = False
+        
+            
