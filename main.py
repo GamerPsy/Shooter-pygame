@@ -1,5 +1,15 @@
 import pygame
+
 pygame.init()
+
+#creation classe game
+class Game:
+
+    def __init__(self):
+        self.player = Player()
+
+
+
 
 #generation de la fenêtre de jeu
 pygame.display.set_caption("Mon shooter en python")
@@ -8,6 +18,8 @@ screen = pygame.display.set_mode((1080, 720))
 #import de l'image de fond
 background = pygame.image.load('assets/bg.jpg')
 
+#chargement du jeu
+game = Game()
 
 
 running = True
@@ -16,7 +28,8 @@ running = True
 while running:
     #appliquer l'arriere plan
     screen.blit(background,(0, -200))
-
+    #appliquer image du joueur
+    screen.blit(game.player.image, game.player.rect)
 
     #mise à jour de l'écran
     pygame.display.flip()
