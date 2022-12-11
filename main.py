@@ -1,14 +1,7 @@
 import pygame
+from game import Game
 
 pygame.init()
-
-#creation classe game
-class Game:
-
-    def __init__(self):
-        self.player = Player()
-
-
 
 
 #generation de la fenêtre de jeu
