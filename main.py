@@ -27,6 +27,7 @@ while running:
 
     for monster in game.all_monsters:
         monster.forward()
+        monster.update_health_bar(screen)
     #appliquer ensemble images projectiles
     game.player.all_projectiles.draw(screen)
     game.all_monsters.draw(screen)
