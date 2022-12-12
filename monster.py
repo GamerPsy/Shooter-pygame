@@ -15,6 +15,13 @@ class Monster(pygame.sprite.Sprite):
         self.rect.y = 540
         self.velocity = 1
 
+    def damage(self, amount):
+        self.health -= amount
+
+        if self.health <= 0:
+            self.rect.x = 1000
+            self.health = self.max_health
+
     def update_health_bar(self, surface):
         bar_color = (111, 210, 46)
         back_bar_color = (60, 63, 60)
