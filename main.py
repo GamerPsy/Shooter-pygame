@@ -52,7 +52,6 @@ while running:
             game.pressed[event.key] = True
             if event.key == pygame.K_SPACE:
                 game.player.lauch_projectile()
-                print(game.player.all_projectiles)
         elif event.type == pygame.KEYUP:
             game.pressed[event.key] = False
         
