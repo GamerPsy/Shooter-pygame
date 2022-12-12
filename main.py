@@ -22,6 +22,8 @@ while running:
     #appliquer image du joueur
     screen.blit(game.player.image, game.player.rect)
 
+    game.player.update_health_bar(screen)
+
     for projectile in game.player.all_projectiles:
         projectile.move()
 
