@@ -58,4 +58,4 @@ while running:
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if start_button_rect.collidepoint(event.pos):
-                game.is_playing = True
+                game.start()

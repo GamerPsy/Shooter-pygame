@@ -14,8 +14,19 @@ class Game:
 
         self.all_monsters = pygame.sprite.Group()
         self.pressed = {}
+        
+
+    def start(self):
+        self.is_playing = True
         self.spawn_monster()
         self.spawn_monster()
+
+    def game_over(self):
+        #remettre le jeu à zero : retirer les monstres, remettre le hero à fond en pv, mettre le jeu en attente
+        self.all_monsters = pygame.sprite.Group()
+        self.player.health = self.player.max_health
+        self.is_playing = False
+
 
     def update(self, screen):
         #appliquer image du joueur
