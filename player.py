@@ -23,7 +23,6 @@ class Player(pygame.sprite.Sprite):
         else: 
             print("Bim badaboum t'es dead")
 
-
     def update_health_bar(self, surface):
         pygame.draw.rect(surface, (60, 63, 60), [self.rect.x + 50, self.rect.y + 20, self.max_health, 8])
         pygame.draw.rect(surface, (111, 210, 46), [self.rect.x + 50, self.rect.y + 20, self.health, 8])
@@ -35,6 +34,5 @@ class Player(pygame.sprite.Sprite):
         if not self.game.check_collision(self, self.game.all_monsters):
             self.rect.x += self.velocity
 
-    
     def move_left(self):
         self.rect.x -= self.velocity

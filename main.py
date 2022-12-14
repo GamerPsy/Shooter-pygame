@@ -1,4 +1,5 @@
 import pygame
+import math
 from game import Game
 
 pygame.init()
@@ -10,6 +11,18 @@ screen = pygame.display.set_mode((1080, 720))
 #import de l'image de fond
 background = pygame.image.load('assets/bg.jpg')
 
+#importer la banniere
+banner = pygame.image.load('assets/banner.png')
+banner = pygame.transform.scale(banner, (500, 500))
+banner_rect = banner.get_rect()
+banner_rect.x = math.ceil(screen.get_width() / 4)
+
+start_button = pygame.image.load('assets/button.png')
+start_button = pygame.transform.scale(start_button, (400, 150))
+start_button_rect = start_button.get_rect()
+start_button_rect.x = math.ceil(screen.get_width() / 3.33)
+start_button_rect.y = math.ceil(screen.get_height() / 2)
+
 #chargement du jeu
 game = Game()
 
@@ -19,26 +32,12 @@ running = True
 while running:
     #appliquer l'arriere plan
     screen.blit(background,(0, -200))
-    #appliquer image du joueur
-    screen.blit(game.player.image, game.player.rect)
-
-    game.player.update_health_bar(screen)
-
-    for projectile in game.player.all_projectiles:
-        projectile.move()
-
-    for monster in game.all_monsters:
-        monster.forward()
-        monster.update_health_bar(screen)
-    #appliquer ensemble images projectiles
-    game.player.all_projectiles.draw(screen)
-    game.all_monsters.draw(screen)
-
-    #gestion mouvement joueur
-    if game.pressed.get(pygame.K_RIGHT) and game.player.rect.x  + game.player.rect.width < screen.get_width():
-        game.player.move_right()
-    elif game.pressed.get(pygame.K_LEFT) and game.player.rect.x > 0:
-        game.player.move_left()
+    
+    if game.is_playing:
+        game.update(screen)
+    else:
+        screen.blit(start_button,(start_button_rect.x, start_button_rect.y))
+        screen.blit(banner,(banner_rect.x, 0))
 
     #mise à jour de l'écran
     pygame.display.flip()
@@ -56,3 +55,7 @@ while running:
                 game.player.lauch_projectile()
         elif event.type == pygame.KEYUP:
             game.pressed[event.key] = False
+
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if start_button_rect.collidepoint(event.pos):
+                game.is_playing = True
