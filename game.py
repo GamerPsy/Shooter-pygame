@@ -7,7 +7,7 @@ from comet_event import CometFallEvent
 class Game:
 
     def __init__(self):
-        self.is_playing = False
+        self.is_playing = True
 
         self.all_players = pygame.sprite.Group()
         self.player = Player(self)
