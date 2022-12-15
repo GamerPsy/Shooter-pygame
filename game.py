@@ -48,6 +48,7 @@ class Game:
         #appliquer ensemble images projectiles
         self.player.all_projectiles.draw(screen)
         self.all_monsters.draw(screen)
+        self.comet_vent.all_comets.draw(screen)
 
      #gestion mouvement joueur
         if self.pressed.get(pygame.K_RIGHT) and self.player.rect.x  + self.player.rect.width < screen.get_width():
