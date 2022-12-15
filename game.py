@@ -13,7 +13,7 @@ class Game:
         self.player = Player(self)
         self.all_players.add(self.player)
 
-        self.comet_vent = CometFallEvent()
+        self.comet_vent = CometFallEvent(self )
 
         self.all_monsters = pygame.sprite.Group()
         self.pressed = {}
@@ -45,6 +45,10 @@ class Game:
         for monster in self.all_monsters:
             monster.forward()
             monster.update_health_bar(screen)
+
+        for comet in self.comet_vent.all_comets:
+            comet.fall()
+        
         #appliquer ensemble images projectiles
         self.player.all_projectiles.draw(screen)
         self.all_monsters.draw(screen)

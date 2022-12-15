@@ -3,10 +3,11 @@ from comet import Comet
 
 class CometFallEvent:
 
-    def __init__(self):
+    def __init__(self, game):
         self.percent = 0
         self.percent_speed = 5
         self.all_comets = pygame.sprite.Group()
+        self.game = game
 
     def add_percent(self):
         self.percent += self.percent_speed / 200
@@ -18,7 +19,7 @@ class CometFallEvent:
         self.percent = 0
 
     def meteor_fall(self):
-        self.all_comets.add(Comet())
+        self.all_comets.add(Comet(self))
 
     def attempt_fall(self):
         if self.is_full_loaded():
