@@ -1,6 +1,7 @@
 import pygame
 from player import Player
 from monster import Monster
+from comet_event import CometFallEvent
 
 #creation classe game
 class Game:
@@ -11,6 +12,8 @@ class Game:
         self.all_players = pygame.sprite.Group()
         self.player = Player(self)
         self.all_players.add(self.player)
+
+        self.comet_vent = CometFallEvent()
 
         self.all_monsters = pygame.sprite.Group()
         self.pressed = {}
@@ -33,6 +36,8 @@ class Game:
         screen.blit(self.player.image, self.player.rect)
 
         self.player.update_health_bar(screen)
+
+        self.comet_vent.update_bar(screen)
 
         for projectile in self.player.all_projectiles:
             projectile.move()
