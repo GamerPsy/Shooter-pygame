@@ -4,6 +4,10 @@ from game import Game
 
 pygame.init()
 
+#definir une clock
+clock = pygame.time.Clock()
+FPS = 60
+
 #generation de la fenêtre de jeu
 pygame.display.set_caption("Mon shooter en python")
 screen = pygame.display.set_mode((1080, 720))
@@ -59,3 +63,6 @@ while running:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if start_button_rect.collidepoint(event.pos):
                 game.start()
+
+    #fixe le nb de FPS
+    clock.tick(FPS)
