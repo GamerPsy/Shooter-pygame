@@ -24,6 +24,10 @@ class Monster(pygame.sprite.Sprite):
             self.velocity = 1 #random.randint(1, 2)
             self.health = self.max_health
 
+            if self.game.comet_vent.is_full_loaded():
+                self.game.all_monsters.remove(self)
+                self.game.comet_vent.attempt_fall()
+
     def update_health_bar(self, surface):
         pygame.draw.rect(surface, (60, 63, 60), [self.rect.x + 10, self.rect.y - 20, self.max_health, 5])
         pygame.draw.rect(surface, (111, 210, 46), [self.rect.x + 10, self.rect.y - 20, self.health, 5])
