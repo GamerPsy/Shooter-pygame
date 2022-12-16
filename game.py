@@ -42,12 +42,15 @@ class Game:
 
         self.comet_vent.update_bar(screen)
 
+        self.player.update_animation()
+
         for projectile in self.player.all_projectiles:
             projectile.move()
 
         for monster in self.all_monsters:
             monster.forward()
             monster.update_health_bar(screen)
+            monster.update_animation()
 
         for comet in self.comet_vent.all_comets:
             comet.fall()

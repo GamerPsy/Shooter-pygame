@@ -6,7 +6,7 @@ pygame.init()
 
 #definir une clock
 clock = pygame.time.Clock()
-FPS = 80
+FPS = 60
 
 #generation de la fenêtre de jeu
 pygame.display.set_caption("Mon shooter en python")
