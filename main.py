@@ -56,13 +56,18 @@ while running:
         elif event.type == pygame.KEYDOWN:
             game.pressed[event.key] = True
             if event.key == pygame.K_SPACE:
-                game.player.lauch_projectile()
+                if game.is_playing:
+                    game.player.lauch_projectile()
+                else:
+                    game.start()
+                    game.soundManager.play('click')
         elif event.type == pygame.KEYUP:
             game.pressed[event.key] = False
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if start_button_rect.collidepoint(event.pos):
                 game.start()
+                game.soundManager.play('click')
 
     #fixe le nb de FPS
     clock.tick(FPS)

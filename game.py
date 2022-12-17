@@ -2,6 +2,8 @@ import pygame
 from player import Player
 from monster import Alien, Monster, Mummy
 from comet_event import CometFallEvent
+from sounds import SoundManager
+
 
 #creation classe game
 class Game:
@@ -14,6 +16,8 @@ class Game:
         self.all_players.add(self.player)
 
         self.comet_vent = CometFallEvent(self)
+
+        self.soundManager = SoundManager()
 
         self.all_monsters = pygame.sprite.Group()
         self.font = pygame.font.Font("assets/Anton.ttf", 25)
@@ -38,7 +42,7 @@ class Game:
         self.comet_vent.reset_percent()
         self.is_playing = False
         self.score = 0
-
+        self.soundManager.play('game_over')
 
     def update(self, screen):
         
