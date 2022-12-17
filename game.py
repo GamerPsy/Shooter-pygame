@@ -16,6 +16,8 @@ class Game:
         self.comet_vent = CometFallEvent(self)
 
         self.all_monsters = pygame.sprite.Group()
+        self.font = pygame.font.Font("assets/Anton.ttf", 25)
+        self.score = 0
         self.pressed = {}
         
 
@@ -25,6 +27,8 @@ class Game:
         self.spawn_monster(Mummy)
         self.spawn_monster(Alien)
 
+    def add_score(self, score=20):
+        self.score += score
 
     def game_over(self):
         #remettre le jeu à zero : retirer les monstres, remettre le hero à fond en pv, mettre le jeu en attente
@@ -33,9 +37,14 @@ class Game:
         self.player.health = self.player.max_health
         self.comet_vent.reset_percent()
         self.is_playing = False
+        self.score = 0
 
 
     def update(self, screen):
+        
+        score_text = self.font.render(f"Score : {self.score}", 1, (0, 0, 0))
+        screen.blit(score_text, (20, 20))
+
         #appliquer image du joueur
         screen.blit(self.player.image, self.player.rect)
 
